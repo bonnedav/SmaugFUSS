@@ -1274,7 +1274,7 @@ End
 Name        installarea~
 Code        do_installarea
 Position    100
-Level       65
+Level       64
 Log         1
 End
 
@@ -1322,7 +1322,7 @@ End
 Name        ipcompare~
 Code        do_ipcompare
 Position    100
-Level       51
+Level       62
 Log         0
 End
 
@@ -3612,7 +3612,7 @@ End
 Name        trust~
 Code        do_trust
 Position    100
-Level       65
+Level       63
 Log         1
 End
 
@@ -3661,7 +3661,7 @@ End
 Name        unfoldarea~
 Code        do_unfoldarea
 Position    100
-Level       65
+Level       64
 Log         1
 End
 
