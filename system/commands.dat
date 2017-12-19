@@ -887,6 +887,38 @@ Log         0
 End
 
 #COMMAND
+Name        escalate~
+Code        do_escalate
+Position    100
+Level       59
+Log         0
+End
+
+#COMMAND
+Name        empower~
+Code        do_empower
+Position    100
+Level       60
+Log         0
+End
+
+#COMMAND
+Name        amplify~
+Code        do_amplify
+Position    100
+Level       61
+Log         0
+End
+
+#COMMAND
+Name        ascend~
+Code        do_ascend
+Position    100
+Level       62
+Log         0
+End
+
+#COMMAND
 Name        favor~
 Code        do_favor
 Position    106
