@@ -182,7 +182,7 @@ End
 Name        advance~
 Code        do_advance
 Position    100
-Level       61
+Level       63
 Log         1
 End
 
@@ -339,7 +339,7 @@ End
 Name        bestow~
 Code        do_bestow
 Position    100
-Level       62
+Level       63
 Log         1
 End
 
@@ -882,7 +882,7 @@ End
 Name        elevate~
 Code        do_elevate
 Position    100
-Level       60
+Level       58
 Log         0
 End
 
@@ -1258,7 +1258,7 @@ End
 Name        immortalize~
 Code        do_immortalize
 Position    100
-Level       59
+Level       57
 Log         1
 End
 
