@@ -3971,6 +3971,246 @@ void do_elevate( CHAR_DATA* ch, const char* argument)
    return;
 }
 
+void do_escalate( CHAR_DATA* ch, const char* argument)
+{
+   char arg[MAX_INPUT_LENGTH];
+   CHAR_DATA *victim;
+
+   set_char_color( AT_IMMORT, ch );
+
+   argument = one_argument( argument, arg );
+   if( arg[0] == '\0' )
+   {
+      send_to_char( "Syntax: escalate <char>\r\n", ch );
+      return;
+   }
+   if( ( victim = get_char_room( ch, arg ) ) == NULL )
+   {
+      send_to_char( "That player is not here.\r\n", ch );
+      return;
+   }
+   if( IS_NPC( victim ) )
+   {
+      send_to_char( "Not on NPC's.\r\n", ch );
+      return;
+   }
+   if( victim->level == LEVEL_CREATOR )
+   {
+      send_to_char( "Escalating a player...\r\n", ch );
+      set_char_color( AT_IMMORT, victim );
+      act( AT_IMMORT, "$n begins to chant softly... then makes some arcane gestures...", ch, NULL, NULL, TO_ROOM );
+      set_char_color( AT_WHITE, victim );
+      send_to_char( "You suddenly feel very strange...\r\n\r\n", victim );
+      set_char_color( AT_LBLUE, victim );
+      do_help( victim, "M_GODLVL4_" );
+      victim->level = LEVEL_SAVIOR;
+      set_char_color( AT_WHITE, victim );
+      advance_level( victim );
+      victim->exp = exp_level( victim, victim->level );
+      victim->trust = 0;
+      return;
+   }
+   if( victim->level == LEVEL_SAVIOR )
+   {
+      send_to_char( "Escalating a player...\r\n", ch );
+      set_char_color( AT_IMMORT, victim );
+      act( AT_IMMORT, "$n begins to chant softly... then makes some arcane gestures...", ch, NULL, NULL, TO_ROOM );
+      set_char_color( AT_WHITE, victim );
+      send_to_char( "You suddenly feel very strange...\r\n\r\n", victim );
+      set_char_color( AT_LBLUE, victim );
+      do_help( victim, "M_GODLVL5_" );
+      victim->level = LEVEL_DEMI;
+      set_char_color( AT_WHITE, victim );
+      advance_level( victim );
+      victim->exp = exp_level( victim, victim->level );
+      victim->trust = 0;
+      return;
+   }
+   else
+      send_to_char( "You cannot escalate this character.\r\n", ch );
+   return;
+}
+
+void do_empower( CHAR_DATA* ch, const char* argument)
+{
+   char arg[MAX_INPUT_LENGTH];
+   CHAR_DATA *victim;
+
+   set_char_color( AT_IMMORT, ch );
+
+   argument = one_argument( argument, arg );
+   if( arg[0] == '\0' )
+   {
+      send_to_char( "Syntax: empower <char>\r\n", ch );
+      return;
+   }
+   if( ( victim = get_char_room( ch, arg ) ) == NULL )
+   {
+      send_to_char( "That player is not here.\r\n", ch );
+      return;
+   }
+   if( IS_NPC( victim ) )
+   {
+      send_to_char( "Not on NPC's.\r\n", ch );
+      return;
+   }
+   if( victim->level == LEVEL_DEMI )
+   {
+      send_to_char( "Empowering a player...\r\n", ch );
+      set_char_color( AT_IMMORT, victim );
+      act( AT_IMMORT, "$n begins to chant softly... then makes some arcane gestures...", ch, NULL, NULL, TO_ROOM );
+      set_char_color( AT_WHITE, victim );
+      send_to_char( "You suddenly feel very strange...\r\n\r\n", victim );
+      set_char_color( AT_LBLUE, victim );
+      do_help( victim, "M_GODLVL6_" );
+      victim->level = LEVEL_TRUEIMM;
+      set_char_color( AT_WHITE, victim );
+      advance_level( victim );
+      victim->exp = exp_level( victim, victim->level );
+      victim->trust = 0;
+      return;
+   }
+   if( victim->level == LEVEL_TRUEIMM )
+   {
+      send_to_char( "Empowering a player...\r\n", ch );
+      set_char_color( AT_IMMORT, victim );
+      act( AT_IMMORT, "$n begins to chant softly... then makes some arcane gestures...", ch, NULL, NULL, TO_ROOM );
+      set_char_color( AT_WHITE, victim );
+      send_to_char( "You suddenly feel very strange...\r\n\r\n", victim );
+      set_char_color( AT_LBLUE, victim );
+      do_help( victim, "M_GODLVL7_" );
+      victim->level = LEVEL_LESSER;
+      set_char_color( AT_WHITE, victim );
+      advance_level( victim );
+      victim->exp = exp_level( victim, victim->level );
+      victim->trust = 0;
+      return;
+   }
+   else
+      send_to_char( "You cannot empower this character.\r\n", ch );
+   return;
+}
+
+void do_amplify( CHAR_DATA* ch, const char* argument)
+{
+   char arg[MAX_INPUT_LENGTH];
+   CHAR_DATA *victim;
+
+   set_char_color( AT_IMMORT, ch );
+
+   argument = one_argument( argument, arg );
+   if( arg[0] == '\0' )
+   {
+      send_to_char( "Syntax: amplify <char>\r\n", ch );
+      return;
+   }
+   if( ( victim = get_char_room( ch, arg ) ) == NULL )
+   {
+      send_to_char( "That player is not here.\r\n", ch );
+      return;
+   }
+   if( IS_NPC( victim ) )
+   {
+      send_to_char( "Not on NPC's.\r\n", ch );
+      return;
+   }
+   if( victim->level == LEVEL_LESSER )
+   {
+      send_to_char( "Amplifying a player...\r\n", ch );
+      set_char_color( AT_IMMORT, victim );
+      act( AT_IMMORT, "$n begins to chant softly... then makes some arcane gestures...", ch, NULL, NULL, TO_ROOM );
+      set_char_color( AT_WHITE, victim );
+      send_to_char( "You suddenly feel very strange...\r\n\r\n", victim );
+      set_char_color( AT_LBLUE, victim );
+      do_help( victim, "M_GODLVL8_" );
+      victim->level = LEVEL_GOD;
+      set_char_color( AT_WHITE, victim );
+      advance_level( victim );
+      victim->exp = exp_level( victim, victim->level );
+      victim->trust = 0;
+      return;
+   }
+   if( victim->level == LEVEL_GOD )
+   {
+      send_to_char( "Amplifying a player...\r\n", ch );
+      set_char_color( AT_IMMORT, victim );
+      act( AT_IMMORT, "$n begins to chant softly... then makes some arcane gestures...", ch, NULL, NULL, TO_ROOM );
+      set_char_color( AT_WHITE, victim );
+      send_to_char( "You suddenly feel very strange...\r\n\r\n", victim );
+      set_char_color( AT_LBLUE, victim );
+      do_help( victim, "M_GODLVL9_" );
+      victim->level = LEVEL_GREATER;
+      set_char_color( AT_WHITE, victim );
+      advance_level( victim );
+      victim->exp = exp_level( victim, victim->level );
+      victim->trust = 0;
+      return;
+   }
+   else
+      send_to_char( "You cannot amplify this character.\r\n", ch );
+   return;
+}
+
+void do_ascend( CHAR_DATA* ch, const char* argument)
+{
+   char arg[MAX_INPUT_LENGTH];
+   CHAR_DATA *victim;
+
+   set_char_color( AT_IMMORT, ch );
+
+   argument = one_argument( argument, arg );
+   if( arg[0] == '\0' )
+   {
+      send_to_char( "Syntax: ascend <char>\r\n", ch );
+      return;
+   }
+   if( ( victim = get_char_room( ch, arg ) ) == NULL )
+   {
+      send_to_char( "That player is not here.\r\n", ch );
+      return;
+   }
+   if( IS_NPC( victim ) )
+   {
+      send_to_char( "Not on NPC's.\r\n", ch );
+      return;
+   }
+   if( victim->level == LEVEL_GREATER )
+   {
+      send_to_char( "Ascending a player...\r\n", ch );
+      set_char_color( AT_IMMORT, victim );
+      act( AT_IMMORT, "$n begins to chant softly... then makes some arcane gestures...", ch, NULL, NULL, TO_ROOM );
+      set_char_color( AT_WHITE, victim );
+      send_to_char( "You suddenly feel very strange...\r\n\r\n", victim );
+      set_char_color( AT_LBLUE, victim );
+      do_help( victim, "M_GODLVL10_" );
+      victim->level = LEVEL_ASCENDANT;
+      set_char_color( AT_WHITE, victim );
+      advance_level( victim );
+      victim->exp = exp_level( victim, victim->level );
+      victim->trust = 0;
+      return;
+   }
+   if( victim->level == LEVEL_ASCENDANT )
+   {
+      send_to_char( "Ascending a player...\r\n", ch );
+      set_char_color( AT_IMMORT, victim );
+      act( AT_IMMORT, "$n begins to chant softly... then makes some arcane gestures...", ch, NULL, NULL, TO_ROOM );
+      set_char_color( AT_WHITE, victim );
+      send_to_char( "You suddenly feel very strange...\r\n\r\n", victim );
+      set_char_color( AT_LBLUE, victim );
+      do_help( victim, "M_GODLVL11_" );
+      victim->level = LEVEL_SUB_IMPLEM;
+      set_char_color( AT_WHITE, victim );
+      advance_level( victim );
+      victim->exp = exp_level( victim, victim->level );
+      victim->trust = 0;
+      return;
+   }
+   else
+      send_to_char( "You cannot ascend this character.\r\n", ch );
+   return;
+}
+
 void do_immortalize( CHAR_DATA* ch, const char* argument)
 {
    int i;
