@@ -187,6 +187,14 @@ Log         1
 End
 
 #COMMAND
+Name        advancel~
+Code        do_advancel
+Position    100
+Level       58
+Log         1
+End
+
+#COMMAND
 Name        allow~
 Code        do_allow
 Position    100
@@ -883,7 +891,7 @@ Name        elevate~
 Code        do_elevate
 Position    100
 Level       58
-Log         0
+Log         1
 End
 
 #COMMAND
@@ -891,7 +899,7 @@ Name        escalate~
 Code        do_escalate
 Position    100
 Level       59
-Log         0
+Log         1
 End
 
 #COMMAND
@@ -899,7 +907,7 @@ Name        empower~
 Code        do_empower
 Position    100
 Level       60
-Log         0
+Log         1
 End
 
 #COMMAND
@@ -907,7 +915,7 @@ Name        amplify~
 Code        do_amplify
 Position    100
 Level       61
-Log         0
+Log         1
 End
 
 #COMMAND
@@ -915,7 +923,7 @@ Name        ascend~
 Code        do_ascend
 Position    100
 Level       62
-Log         0
+Log         1
 End
 
 #COMMAND
@@ -1354,7 +1362,7 @@ End
 Name        ipcompare~
 Code        do_ipcompare
 Position    100
-Level       62
+Level       51
 Log         0
 End
 
@@ -2083,7 +2091,7 @@ End
 Name        mortalize~
 Code        do_mortalize
 Position    100
-Level       58
+Level       57
 Log         1
 End
 
@@ -2555,6 +2563,22 @@ Log         2
 End
 
 #COMMAND
+Name        pkset~
+Code        do_pkset
+Position    100
+Level       55
+Log         1
+End
+
+#COMMAND
+Name        pkunset~
+Code        do_pkunset
+Position    100
+Level       64
+Log         1
+End
+
+#COMMAND
 Name        practice~
 Code        do_practice
 Position    104
@@ -2901,6 +2925,14 @@ Name        retire~
 Code        do_retire
 Position    100
 Level       59
+Log         1
+End
+
+#COMMAND
+Name        resign~
+Code        do_resign
+Position    100
+Level       51
 Log         1
 End
 
