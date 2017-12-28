@@ -3991,7 +3991,6 @@ void do_advancel( CHAR_DATA* ch, const char* argument)
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
-   char buf[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
    int level;
    int iLevel;
@@ -6070,12 +6069,8 @@ void do_mortalize( CHAR_DATA * ch, const char *argument )
 
 void do_resign( CHAR_DATA * ch, const char *argument )
 {
-   char fname[256];
-   char name[256];
-   struct stat fst;
+   struct stat;
    bool loaded = FALSE;
-   DESCRIPTOR_DATA *d;
-   int test = 0;
    char buf[MAX_STRING_LENGTH];
    char buf2[MAX_STRING_LENGTH];
    CHAR_DATA *victim = NULL;
