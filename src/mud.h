@@ -4000,7 +4000,7 @@ DECLARE_DO_FUN( do_restoretime );
 DECLARE_DO_FUN( do_restrict );
 DECLARE_DO_FUN( do_retell );
 DECLARE_DO_FUN( do_retire );
-DECLARE_DO_FUN( do_resign )
+DECLARE_DO_FUN( do_resign );
 DECLARE_DO_FUN( do_retiredtalk );
 DECLARE_DO_FUN( do_retran );
 DECLARE_DO_FUN( do_return );
