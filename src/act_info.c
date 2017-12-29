@@ -4353,6 +4353,8 @@ void do_config( CHAR_DATA* ch, const char* argument)
                  " You are not permitted to set your homepage.\r\n" : "",
                  IS_SET( ch->pcdata->flags, PCFLAG_NODESC ) ? 
 		 " You are not permitted to set your description.\r\n" : "",
+		 IS_SET( ch->pcdata->flags, PCFLAG_NOBIO ) ? 
+		 " You are not permitted to set your bio.\r\n" : "",
 	   	 IS_SET( ch->pcdata->flags, PCFLAG_NOTITLE ) ? " You are not permitted to set your title.\r\n" : "" );
    }
    else
