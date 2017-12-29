@@ -4024,9 +4024,9 @@ void do_advancel( CHAR_DATA* ch, const char* argument)
       send_to_char( "You can't do that.\r\n", ch );
       return;
    }
-   if( ( level = atoi( arg2 ) ) < 1 || level > LEVEL_AVATAR )
+   if( ( level = atoi( arg2 ) ) < 2 || level > LEVEL_AVATAR )
    {
-      ch_printf( ch, "Level range is 1 to %d.\r\n", LEVEL_AVATAR );
+      ch_printf( ch, "Level range is 2 to %d.\r\n", LEVEL_AVATAR );
       return;
    }
    if( level > get_trust( ch ) )
@@ -4150,9 +4150,9 @@ void do_advancelp( CHAR_DATA* ch, const char* argument)
       send_to_char( "You can't do that.\r\n", ch );
       return;
    }
-   if( ( level = atoi( arg2 ) ) < 1 || level > maxl )
+   if( ( level = atoi( arg2 ) ) < 10 || level > maxl )
    {
-      ch_printf( ch, "Level range is 1 to %d.\r\n", maxl );
+      ch_printf( ch, "Level range is 10 to %d.\r\n", maxl );
       return;
    }
    if( level > get_trust( ch ) )
