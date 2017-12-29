@@ -4001,7 +4001,7 @@ void do_advancel( CHAR_DATA* ch, const char* argument)
    argument = one_argument( argument, arg2 );
    if( arg1[0] == '\0' || arg2[0] == '\0' || !is_number( arg2 ) )
    {
-      send_to_char( "Syntax:  advance <character> <level>\r\n", ch );
+      send_to_char( "Syntax:  advancel <character> <level>\r\n", ch );
       return;
    }
    if( ( victim = get_char_room( ch, arg1 ) ) == NULL )
@@ -4014,7 +4014,7 @@ void do_advancel( CHAR_DATA* ch, const char* argument)
       send_to_char( "You cannot advance a mobile.\r\n", ch );
       return;
    }
-   if( victim->level > LEVEL_AVATAR )
+   if( get_trust( victim ) > LEVEL_AVATAR )
    {
 	   send_to_char( "You cannot advance an immortal.\r\n", ch );
 	   return;
@@ -4027,6 +4027,132 @@ void do_advancel( CHAR_DATA* ch, const char* argument)
    if( ( level = atoi( arg2 ) ) < 1 || level > LEVEL_AVATAR )
    {
       ch_printf( ch, "Level range is 1 to %d.\r\n", LEVEL_AVATAR );
+      return;
+   }
+   if( level > get_trust( ch ) )
+   {
+      send_to_char( "Level limited to your trust level.\r\n", ch );
+      return;
+   }
+   /*
+    * Lower level:
+    * *   Reset to level 1.
+    * *   Then raise again.
+    * *   Currently, an imp can lower another imp.
+    * *   -- Swiftest
+    * *   Can't lower imms >= your trust (other than self) per Narn's change.
+    * *   Few minor text changes as well.  -- Blod
+    */
+   if( level <= victim->level )
+   {
+      int sn;
+
+      set_char_color( AT_IMMORT, victim );
+
+
+      if( level < victim->level )
+      {
+         int tmp = victim->level;
+
+         victim->level = level;
+         check_switch( victim, FALSE );
+         victim->level = tmp;
+
+         ch_printf( ch, "Demoting %s from level %d to level %d!\r\n", victim->name, victim->level, level );
+         send_to_char( "Cursed and forsaken!  The gods have lowered your level...\r\n", victim );
+      }
+      else
+      {
+         ch_printf( ch, "%s is already level %d.  Re-advancing...\r\n", victim->name, level );
+         send_to_char( "Deja vu!  Your mind reels as you re-live your past levels!\r\n", victim );
+      }
+      victim->level = 1;
+      victim->exp = exp_level( victim, 1 );
+      victim->max_hit = 20;
+      victim->max_mana = 100;
+      victim->max_move = 100;
+      for( sn = 0; sn < num_skills; ++sn )
+         victim->pcdata->learned[sn] = 0;
+      victim->practice = 0;
+      victim->hit = victim->max_hit;
+      victim->mana = victim->max_mana;
+      victim->move = victim->max_move;
+      advance_level( victim );
+      /*
+       * Rank fix added by Narn. 
+       */
+      DISPOSE( victim->pcdata->rank );
+      victim->pcdata->rank = str_dup( "" );
+      /*
+       * Stuff added to make sure character's wizinvis level doesn't stay
+       * higher than actual level, take wizinvis away from advance < 50 
+       */
+      victim->pcdata->wizinvis = victim->trust;
+      if( victim->level <= LEVEL_AVATAR )
+      {
+         xREMOVE_BIT( victim->act, PLR_WIZINVIS );
+         victim->pcdata->wizinvis = 0;
+      }
+   }
+   else
+   {
+      ch_printf( ch, "Raising %s from level %d to level %d!\r\n", victim->name, victim->level, level );
+      send_to_char( "The gods feel fit to raise your level!\r\n", victim );
+   }
+   for( iLevel = victim->level; iLevel < level; iLevel++ )
+   {
+      if( level < LEVEL_IMMORTAL )
+         send_to_char( "You raise a level!!\r\n", victim );
+      victim->level += 1;
+      advance_level( victim );
+   }
+   victim->exp = exp_level( victim, victim->level );
+   victim->trust = 0;
+   return;
+}
+
+void do_advancelp( CHAR_DATA* ch, const char* argument)
+{
+   char arg1[MAX_INPUT_LENGTH];
+   char arg2[MAX_INPUT_LENGTH];
+   CHAR_DATA *victim;
+   int level;
+   int iLevel;
+   int maxl;
+
+   set_char_color( AT_IMMORT, ch );
+
+   maxl = LEVEL_AVATAR - 5;
+   argument = one_argument( argument, arg1 );
+   argument = one_argument( argument, arg2 );
+   if( arg1[0] == '\0' || arg2[0] == '\0' || !is_number( arg2 ) )
+   {
+      send_to_char( "Syntax:  advancel <character> <level>\r\n", ch );
+      return;
+   }
+   if( ( victim = get_char_room( ch, arg1 ) ) == NULL )
+   {
+      send_to_char( "That character is not in the room.\r\n", ch );
+      return;
+   }
+   if( IS_NPC( victim ) )
+   {
+      send_to_char( "You cannot advance a mobile.\r\n", ch );
+      return;
+   }
+   if( get_trust( victim ) > LEVEL_AVATAR )
+   {
+	   send_to_char( "You cannot advance an immortal.\r\n", ch );
+	   return;
+   }
+   if( get_trust( ch ) <= get_trust( victim ) || ch == victim )
+   {
+      send_to_char( "You can't do that.\r\n", ch );
+      return;
+   }
+   if( ( level = atoi( arg2 ) ) < 1 || level > maxl )
+   {
+      ch_printf( ch, "Level range is 1 to %d.\r\n", maxl );
       return;
    }
    if( level > get_trust( ch ) )
