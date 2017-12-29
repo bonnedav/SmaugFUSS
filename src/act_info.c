@@ -4336,7 +4336,7 @@ void do_config( CHAR_DATA* ch, const char* argument)
       set_char_color( AT_DGREEN, ch );
       send_to_char( "\r\n\r\nSentences imposed on you (if any):", ch );
       set_char_color( AT_YELLOW, ch );
-      ch_printf( ch, "\r\n%s%s%s%s%s%s%s%s",
+      ch_printf( ch, "\r\n%s%s%s%s%s%s%s%s%s%s",
                  xIS_SET( ch->act, PLR_SILENCE ) ?
                  " For your abuse of channels, you are currently silenced.\r\n" : "",
                  xIS_SET( ch->act, PLR_NO_EMOTE ) ?
