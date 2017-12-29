@@ -3683,6 +3683,7 @@ DECLARE_DO_FUN( do_add_imm_host );
 DECLARE_DO_FUN( do_adminlist );
 DECLARE_DO_FUN( do_advance );
 DECLARE_DO_FUN( do_advancel );
+DECLARE_DO_FUN( do_advancelp );
 DECLARE_DO_FUN( do_aecho );
 DECLARE_DO_FUN( do_affected );
 DECLARE_DO_FUN( do_afk );
