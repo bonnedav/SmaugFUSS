@@ -190,7 +190,15 @@ End
 Name        advancel~
 Code        do_advancel
 Position    100
-Level       58
+Level       59
+Log         1
+End
+
+#COMMAND
+Name        advancelp~
+Code        do_advancelp
+Position    100
+Level       56
 Log         1
 End
 
