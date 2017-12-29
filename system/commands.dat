@@ -2341,7 +2341,7 @@ Log         0
 End
 
 #COMMAND
-Name        no_desc~
+Name        nodesc~
 Code        do_nodesc
 Position    100
 Level       54
