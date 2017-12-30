@@ -1914,7 +1914,7 @@ End
 Name        makewizlist~
 Code        do_makewizlist
 Position    100
-Level       61
+Level       57
 Log         1
 End
 
